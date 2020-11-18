@@ -1,4 +1,4 @@
-package blaster.help.form.task;
+package blaster.help.form;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

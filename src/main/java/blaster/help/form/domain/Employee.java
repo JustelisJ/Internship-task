@@ -13,4 +13,7 @@ public class Employee {
     private String email;
     private Department department;
 
+    public Employee() {
+        department = new Department("asd");
+    }
 }

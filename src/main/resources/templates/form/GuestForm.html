@@ -16,37 +16,65 @@
 <body>
 <div class="container-md">
     <div class="col-md-4 col-md-offset-4">
+
+        <div class="row">
+            <h1 class="text-center">Blaster Help Form</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <img src="../../static/images/BLASTER_logo.png" alt="Blaster logo"
+                     th:src="@{../static/images/BLASTER_logo.png}">
+            </div>
+        </div>
+
         <!--/*@thymesVar id="employee" type="blaster.help.form.domain.Employee"*/-->
         <form th:object="${employee}" th:action="@{/guest}" th:method="post">
-            <div class="row">
-                <h1 class="text-center">Blaster Help Form</h1>
+            <div th:if="${#fields.hasErrors()}" class="alert alert-danger">
+                <p>Please Correct Errors Below</p>
             </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <img src="../../static/images/BLASTER_logo.png" alt="Blaster logo"
-                         th:src="@{../static/images/BLASTER_logo.png}">
-                </div>
-            </div>
-            <div class="row">
+
+            <div th:class="${#fields.hasErrors('name')} ? 'row form-group has-error' : 'row form-group'">
                 <h3>Name</h3>
                 <input type="text" class="form-control" th:field="*{name}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('name')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('name')}" th:text="${err}"/>
+                    </ul>
+                </span>
             </div>
-            <div class="row">
+            <div th:class="${#fields.hasErrors('surname')} ? 'row form-group has-error' : 'row form-group'">
                 <h3>Surname</h3>
                 <input type="text" class="form-control" th:field="*{surname}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('surname')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('surname')}" th:text="${err}"/>
+                    </ul>
+                </span>
             </div>
-            <div class="row">
+            <div th:class="${#fields.hasErrors('email')} ? 'row form-group has-error' : 'row form-group'">
                 <h3>Email</h3>
                 <input type="text" class="form-control" th:field="*{email}"/>
+                <span class="help-block" th:if="${#fields.hasErrors('email')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('email')}" th:text="${err}"/>
+                    </ul>
+                </span>
             </div>
-            <div class="row">
+            <div th:class="${#fields.hasErrors('department.name')} ? 'row form-group has-error' : 'row form-group'">
                 <h3>Select department</h3>
                 <!--/*@thymesVar id="dep" type="blaster.help.form.domain.Department"*/-->
                 <select class="form-control" th:field="*{department}">
-                    <option th:each="dep : ${departments}" th:value="${dep.getName()}" th:text="${dep.getName()}">
+                    <option selected="selected" value=""></option>
+                    <option th:each="dep : ${T(blaster.help.form.domain.Department).mockDepartmentList()}"
+                            th:value="${dep}" th:text="${dep.getName()}">
                         department name
                     </option>
                 </select>
+                <span class="help-block" th:if="${#fields.hasErrors('department.name')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('department.name')}" th:text="${err}"/>
+                    </ul>
+                </span>
             </div>
             <div class="row">
                 <button type="submit" class="btn btn-primary">Confirm</button>

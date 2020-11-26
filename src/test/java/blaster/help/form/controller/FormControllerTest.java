@@ -1,5 +1,6 @@
 package blaster.help.form.controller;
 
+import blaster.help.form.domain.Department;
 import blaster.help.form.domain.Employee;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,10 +33,30 @@ class FormControllerTest {
 
     @Test
     void guestPost() throws Exception {
+        Employee correctEmployee = initializeCorrectEmployee();
+
         mockMvc.perform(post("/guest")
-                .flashAttr("employee", new Employee()))
+                .flashAttr("employee", correctEmployee))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect: "))
                 .andExpect(model().attributeExists("employee"));
+    }
+
+    @Test
+    void guestPostIncorrectForm() throws Exception {
+        mockMvc.perform(post("/guest")
+                .flashAttr("employee", new Employee()))
+                .andExpect(status().isOk())
+                .andExpect(view().name("form/GuestForm"))
+                .andExpect(model().attributeExists("employee"));
+    }
+
+    private Employee initializeCorrectEmployee() {
+        Employee correctEmployee = new Employee();
+        correctEmployee.setName("Vardenis");
+        correctEmployee.setSurname("Pavardenis");
+        correctEmployee.setEmail("some@thing.yes");
+        correctEmployee.setDepartment(new Department("Main department"));
+        return correctEmployee;
     }
 }

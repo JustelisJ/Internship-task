@@ -41,17 +41,11 @@
             </div>
             <div class="row">
                 <h3>Select department</h3>
+                <!--/*@thymesVar id="dep" type="blaster.help.form.domain.Department"*/-->
                 <select class="form-control" th:field="*{department}">
-                    <option th:value="'TeleSoftas Kaunas'">TeleSoftas Kaunas</option>
-                    <option th:value="'TeleSoftas Vilnius'">TeleSoftas Vilnius</option>
-                    <option th:value="'TeleSoftas Klaipėda'">TeleSoftas Klaipėda</option>
-                    <option th:value="'Adeo Web Kaunas'">Adeo Web Kaunas</option>
-                    <option th:value="'Adeo Web Kaunas'">Adeo Web Kaunas</option>
-                    <option th:value="'SneakyBox Kaunas'">SneakyBox Kaunas</option>
-                    <option th:value="'SneakyBox Vilnius'">SneakyBox Vilnius</option>
-                    <option th:value="'MobOn'">MobOn</option>
-                    <option th:value="'OKTA'">OKTA</option>
-                    <option th:value="'Agmis'">Agmis</option>
+                    <option th:each="dep : ${departments}" th:value="${dep.getName()}" th:text="${dep.getName()}">
+                        department name
+                    </option>
                 </select>
             </div>
             <div class="row">

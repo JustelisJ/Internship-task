@@ -1,6 +1,7 @@
 package blaster.help.form.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.validation.constraints.NotBlank;
@@ -9,14 +10,12 @@ import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Department {
 
     private int id;
-    @NotBlank(message = "Choose a department")
+    @NotBlank(message = "Department is mandatory")
     private String name;
-
-    public Department() {
-    }
 
     public Department(String name) {
         this.name = name;

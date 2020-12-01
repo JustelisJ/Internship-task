@@ -1,4 +1,4 @@
-package lt.blaster.help.form.task;
+package lt.blaster.help.form;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

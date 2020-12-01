@@ -4,6 +4,7 @@ import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -14,4 +15,7 @@ public class EquipmentOrder {
     private LocalDate deadline;
     private String comment;
 
+    public EquipmentOrder() {
+        equipments = new ArrayList<>();
+    }
 }

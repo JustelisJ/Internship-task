@@ -18,7 +18,7 @@ public class StandardEquipmentController {
     public String getStandardEquipmentForm(Model model) {
         model.addAttribute("today", LocalDate.now());
         model.addAttribute("order", new EquipmentOrder());
-        model.addAttribute("allEquipment", new StandardEquipment());
+        model.addAttribute("allEquipment", StandardEquipment.mockStandardEquipment());
         return "form/standardEquipment";
     }
 

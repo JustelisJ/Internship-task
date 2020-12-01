@@ -24,6 +24,19 @@
         <!--/*@thymesVar id="order" type="lt.blaster.help.form.domain.EquipmentOrder"*/-->
         <form th:object="${order}" th:action="@{/standardEquipment}" th:method="post">
 
+            <div th:class="${#fields.hasErrors('equipments')} ? 'row form-group has-error' : 'row form-group'">
+                <h3>Pick equipment</h3>
+                <div th:each="equipment : ${allEquipment}" class="col-md-6">
+                    <img th:src="''" th:alt="${equipment.getName()}">
+                    <input type="checkbox" th:text="${equipment.getName()}" th:value="${equipment}"
+                           class="form-control" th:field="*{equipments}"/>
+                </div>
+                <span class="help-block" th:if="${#fields.hasErrors('equipments')}">
+                    <ul>
+                        <li th:each="err : ${#fields.errors('equipments')}" th:text="${err}"/>
+                    </ul>
+                </span>
+            </div>
 
             <div th:class="${#fields.hasErrors('deadline')} ? 'row form-group has-error' : 'row form-group'">
                 <h3>Deadline</h3>

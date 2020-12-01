@@ -26,10 +26,12 @@
 
             <div th:class="${#fields.hasErrors('equipments')} ? 'row form-group has-error' : 'row form-group'">
                 <h3>Pick equipment</h3>
-                <div th:each="equipment : ${allEquipment}" class="col-md-6">
-                    <img th:src="''" th:alt="${equipment.getName()}">
-                    <input type="checkbox" th:text="${equipment.getName()}" th:value="${equipment}"
-                           class="form-control" th:field="*{equipments}"/>
+                <div class="row form-group">
+                    <div th:each="equipment : ${allEquipment}" class="col-md-6">
+                        <img th:src="''" th:alt="${equipment.getName()}">
+                        <input type="checkbox" th:text="${equipment.getName()}" th:value="${equipment}"
+                               class="form-control" th:field="*{equipments}"/>
+                    </div>
                 </div>
                 <span class="help-block" th:if="${#fields.hasErrors('equipments')}">
                     <ul>
